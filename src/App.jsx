@@ -10,12 +10,13 @@ const App = () => {
     password: "",
     confirm_password: "",
   };
-  const { handleSubmit, handleChange, values, errors, handleReset, touched } =
+  const { handleSubmit, handleChange, values, errors, handleReset, touched , handleBlur} =
     useFormik({
       initialValues: initialValues,
       validationSchema: FormSchema,
       onSubmit: (values) => {
         console.log(values);
+        alert(JSON.stringify(values,null))
         handleReset();
       },
     });
@@ -30,6 +31,7 @@ const App = () => {
             type="text"
             onChange={handleChange}
             value={values.name}
+            onBlur={handleBlur}
           />
 
           {errors.name && touched.name ? (
@@ -44,13 +46,14 @@ const App = () => {
             type="email"
             onChange={handleChange}
             value={values.email}
+            onBlur={handleBlur}
           />
           {errors.email && touched.email ? (
             <Form.Text className="form-errors">{errors.email}</Form.Text>
           ) : null}
         </Form.Group>
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label>Password</Form.Label> 
           <Form.Control
             id="password"
             name="password"
@@ -58,6 +61,7 @@ const App = () => {
             placeholder="password"
             onChange={handleChange}
             value={values.password}
+            onBlur={handleBlur}
           />
           {errors.password && touched.password ? (
             <Form.Text className="form-errors">{errors.password}</Form.Text>
@@ -72,6 +76,7 @@ const App = () => {
             placeholder="Confirm password"
             onChange={handleChange}
             value={values.confirm_password}
+            onBlur={handleBlur}
           />
           {errors.confirm_password && touched.confirm_password ? (
             <Form.Text className="form-errors">
